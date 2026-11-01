@@ -298,6 +298,92 @@ input:focus {
     background-position: -100% 0;
   }
 }
+    /* HUSH – BUTTON SHINE */
+button[type="submit"] {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+button[type="submit"]::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -80%;
+  width: 45%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.35),
+    transparent
+  );
+  transform: skewX(-20deg);
+  pointer-events: none;
+}
+
+button[type="submit"]:hover::after {
+  animation: buttonShine 0.8s ease;
+}
+
+@keyframes buttonShine {
+  from { left: -80%; }
+  to { left: 140%; }
+}
+
+/* HUSH – PAGE FADE IN */
+@keyframes hushFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page {
+  animation: hushFadeIn 1.2s ease both;
+}
+
+/* RESPECT REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+  .page {
+    animation: none;
+  }
+
+  button[type="submit"]:hover::after {
+    animation: none;
+  }
+}
+    /* HUSH – UNSEEN GLOW */
+h1 span {
+  color: #fff;
+  text-shadow:
+    0 0 8px rgba(255,255,255,0.25),
+    0 0 20px rgba(255,255,255,0.12);
+  animation: unseenGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes unseenGlow {
+  from {
+    text-shadow:
+      0 0 5px rgba(255,255,255,0.15),
+      0 0 12px rgba(255,255,255,0.08);
+  }
+  to {
+    text-shadow:
+      0 0 10px rgba(255,255,255,0.4),
+      0 0 28px rgba(255,255,255,0.2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  h1 span {
+    animation: none;
+  }
+}
   </style>
 
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
