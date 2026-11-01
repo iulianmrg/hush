@@ -301,11 +301,47 @@
 
   </div>
 
-  <script>
-    document.getElementById('privateForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      document.getElementById('successMessage').style.display = 'block';
-    });
-  </script>
+<script>
+  document.getElementById('privateForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const form = this;
+    const button = form.querySelector('button[type="submit"]');
+    const successMessage = document.getElementById('successMessage');
+
+    const name = form.querySelector('[name="name"]').value.trim();
+    const instagram = form.querySelector('[name="instagram"]').value.trim();
+    const email = form.querySelector('[name="email"]').value.trim();
+
+    button.disabled = true;
+    button.textContent = 'SENDING...';
+
+    try {
+      const response = await fetch('/api/private-list', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, instagram, email })
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Something went wrong.');
+      }
+
+      successMessage.textContent = 'YOUR REQUEST HAS BEEN RECEIVED.';
+      successMessage.style.display = 'block';
+      form.reset();
+
+    } catch (error) {
+      successMessage.textContent = error.message;
+      successMessage.style.display = 'block';
+
+    } finally {
+      button.disabled = false;
+      button.textContent = 'REQUEST ACCESS';
+    }
+  });
+</script>
 </body>
 </html>
