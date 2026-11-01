@@ -1,248 +1,311 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FlowState - Find Your Perfect Workflow</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080808">
+  <title>HUSH. — Private List</title>
+  <meta name="description" content="HUSH. — A different kind of night. Iași, Romania.">
 
-    <!-- Navigation -->
-    <header class="navbar">
-        <div class="container nav-container">
-            <a href="#" class="logo">
-                <i class="fas fa-wave-square"></i> FlowState
-            </a>
-            <nav class="nav-links" id="navLinks">
-                <a href="#features">Features</a>
-                <a href="#testimonials">Testimonials</a>
-                <a href="#pricing">Pricing</a>
-                <a href="#" class="btn btn-primary">Get Started</a>
-            </nav>
-            <button class="hamburger" id="hamburger">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #080808;
+      color: #f5f5f5;
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at 50% 45%, rgba(255,255,255,0.055), transparent 55%);
+      z-index: 0;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 38px 7%;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 700;
+      letter-spacing: -1.8px;
+    }
+
+    .location {
+      font-size: 10px;
+      color: #777;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 90px 0;
+    }
+
+    .eyebrow {
+      color: #888;
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 35px;
+      animation: appear 1s ease both;
+    }
+
+    h1 {
+      font-size: clamp(48px, 9vw, 105px);
+      line-height: 0.98;
+      letter-spacing: -6px;
+      font-weight: 500;
+      max-width: 950px;
+      animation: appear 1.2s ease both;
+    }
+
+    h1 span {
+      color: #777;
+    }
+
+    .subtitle {
+      margin-top: 28px;
+      color: #858585;
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      line-height: 1.8;
+      animation: appear 1.4s ease both;
+    }
+
+    .form-area {
+      margin-top: 85px;
+      width: 100%;
+      max-width: 390px;
+      animation: appear 1.6s ease both;
+    }
+
+    .form-title {
+      font-size: 10px;
+      letter-spacing: 4px;
+      color: #aaa;
+      margin-bottom: 28px;
+    }
+
+    .field {
+      width: 100%;
+      margin-bottom: 13px;
+    }
+
+    input {
+      width: 100%;
+      height: 52px;
+      padding: 0 17px;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 3px;
+      color: white;
+      font-family: inherit;
+      font-size: 12px;
+      outline: none;
+      transition: border 0.3s, background 0.3s;
+    }
+
+    input::placeholder {
+      color: #777;
+    }
+
+    input:focus {
+      border-color: rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.055);
+    }
+
+    button {
+      width: 100%;
+      height: 52px;
+      margin-top: 8px;
+      border: 1px solid #eee;
+      border-radius: 3px;
+      background: #eee;
+      color: #080808;
+      font-family: inherit;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: transparent;
+      color: white;
+    }
+
+    .form-note {
+      color: #555;
+      font-size: 10px;
+      margin-top: 17px;
+      line-height: 1.6;
+    }
+
+    .success {
+      display: none;
+      color: #ddd;
+      font-size: 12px;
+      letter-spacing: 1px;
+      margin-top: 20px;
+    }
+
+    footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #555;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .page {
+        padding: 27px 23px;
+      }
+
+      .logo {
+        font-size: 23px;
+      }
+
+      .location {
+        font-size: 8px;
+        letter-spacing: 1px;
+      }
+
+      main {
+        padding: 85px 0;
+      }
+
+      h1 {
+        font-size: clamp(48px, 13vw, 70px);
+        letter-spacing: -3px;
+      }
+
+      .subtitle {
+        font-size: 12px;
+      }
+
+      .form-area {
+        margin-top: 65px;
+      }
+
+      footer {
+        font-size: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <header>
+      <div class="logo">HUSH.</div>
+      <div class="location">IAȘI · ROMANIA</div>
     </header>
 
     <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-bg-glow"></div>
-            <div class="container hero-content">
-                <div class="badge fade-in">
-                    <i class="fas fa-sparkles"></i> Now with AI Copilot 2.0
-                </div>
-                <h1 class="fade-in">
-                    Find your <br>
-                    <span class="gradient-text">perfect flow.</span>
-                </h1>
-                <p class="hero-subtitle fade-in">
-                    FlowState is the all-in-one AI workspace that automates your busywork, 
-                    organizes your thoughts, and helps your team ship 10x faster.
-                </p>
-                <div class="hero-buttons fade-in">
-                    <a href="#" class="btn btn-primary btn-large">
-                        Start for Free <i class="fas fa-arrow-right"></i>
-                    </a>
-                    <a href="#" class="btn btn-secondary btn-large">
-                        <i class="fas fa-play"></i> Watch Demo
-                    </a>
-                </div>
-                <div class="hero-image fade-in">
-                    <div class="dashboard-mockup">
-                        <div class="mockup-header">
-                            <span class="dot red"></span>
-                            <span class="dot yellow"></span>
-                            <span class="dot green"></span>
-                        </div>
-                        <div class="mockup-body">
-                            <div class="mockup-sidebar"></div>
-                            <div class="mockup-main">
-                                <div class="mockup-card"></div>
-                                <div class="mockup-card"></div>
-                                <div class="mockup-card wide"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <div class="eyebrow">Not everything is meant for everyone</div>
 
-        <!-- Features Section -->
-        <section id="features" class="features">
-            <div class="container">
-                <div class="section-header fade-in">
-                    <h2>Everything you need to <span class="gradient-text">scale</span></h2>
-                    <p>Powerful features designed to eliminate friction and keep your team in the flow state.</p>
-                </div>
-                <div class="features-grid">
-                    <div class="feature-card glass fade-in">
-                        <div class="feature-icon" style="--icon-color: #8b5cf6;">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <h3>AI Copilot</h3>
-                        <p>Let our AI draft emails, summarize meetings, and generate code while you focus on what matters.</p>
-                    </div>
-                    <div class="feature-card glass fade-in">
-                        <div class="feature-icon" style="--icon-color: #ec4899;">
-                            <i class="fas fa-diagram-project"></i>
-                        </div>
-                        <h3>Smart Workflows</h3>
-                        <p>Automate repetitive tasks with visual workflows. Connect your favorite tools seamlessly.</p>
-                    </div>
-                    <div class="feature-card glass fade-in">
-                        <div class="feature-icon" style="--icon-color: #3b82f6;">
-                            <i class="fas fa-shield-halved"></i>
-                        </div>
-                        <h3>Enterprise Security</h3>
-                        <p>SOC 2 compliant with end-to-end encryption. Your data is safe, private, and always yours.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <h1>
+        SOME THINGS<br>
+        ARE BETTER <span>UNSEEN.</span>
+      </h1>
 
-        <!-- Testimonials Section -->
-        <section id="testimonials" class="testimonials">
-            <div class="container">
-                <div class="section-header fade-in">
-                    <h2>Loved by <span class="gradient-text">innovators</span></h2>
-                    <p>Join thousands of teams who have transformed their workflow with FlowState.</p>
-                </div>
-                <div class="testimonials-grid">
-                    <div class="testimonial-card glass fade-in">
-                        <div class="stars">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <p class="quote">"FlowState completely replaced three different tools for us. The AI summarization alone saves our team 10 hours a week. It's an absolute game-changer."</p>
-                        <div class="user-info">
-                            <img src="https://i.pravatar.cc/150?img=11" alt="User" class="avatar">
-                            <div>
-                                <h4>Sarah Jenkins</h4>
-                                <span>VP of Product, TechCorp</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card glass fade-in">
-                        <div class="stars">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <p class="quote">"The onboarding was seamless, and the smart workflows are incredibly intuitive. We've seen a 40% increase in our deployment speed since switching."</p>
-                        <div class="user-info">
-                            <img src="https://i.pravatar.cc/150?img=33" alt="User" class="avatar">
-                            <div>
-                                <h4>Marcus Chen</h4>
-                                <span>CTO, StartupHub</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card glass fade-in">
-                        <div class="stars">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <p class="quote">"Finally, a workspace that actually feels like it was designed for modern teams. The UI is gorgeous, and the AI features are genuinely useful, not just a gimmick."</p>
-                        <div class="user-info">
-                            <img src="https://i.pravatar.cc/150?img=47" alt="User" class="avatar">
-                            <div>
-                                <h4>Elena Rodriguez</h4>
-                                <span>Design Lead, CreativeStudio</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <p class="subtitle">
+        A different kind of night.<br>
+        You will know when it's time.
+      </p>
 
-        <!-- Pricing Section -->
-        <section id="pricing" class="pricing">
-            <div class="container">
-                <div class="section-header fade-in">
-                    <h2>Simple, transparent <span class="gradient-text">pricing</span></h2>
-                    <p>No hidden fees. No surprises. Pick the plan that fits your team.</p>
-                    
-                    <!-- Billing Toggle -->
-                    <div class="billing-toggle fade-in">
-                        <span class="toggle-label active" id="monthlyLabel">Monthly</span>
-                        <label class="switch">
-                            <input type="checkbox" id="billingSwitch">
-                            <span class="slider"></span>
-                        </label>
-                        <span class="toggle-label" id="yearlyLabel">Yearly <span class="save-badge">Save 20%</span></span>
-                    </div>
-                </div>
+      <div class="form-area">
+        <div class="form-title">PRIVATE LIST</div>
 
-                <div class="pricing-grid">
-                    <!-- Starter Plan -->
-                    <div class="pricing-card glass fade-in">
-                        <h3 class="plan-name">Starter</h3>
-                        <p class="plan-desc">Perfect for individuals and small side projects.</p>
-                        <div class="plan-price">
-                            <span class="currency">$</span>
-                            <span class="price-amount" data-monthly="0" data-yearly="0">0</span>
-                            <span class="period">/ month</span>
-                        </div>
-                        <a href="#" class="btn btn-secondary btn-block">Get Started Free</a>
-                        <ul class="plan-features">
-                            <li><i class="fas fa-check"></i> Up to 3 projects</li>
-                            <li><i class="fas fa-check"></i> Basic AI Copilot (50 credits/mo)</li>
-                            <li><i class="fas fa-check"></i> 5GB storage</li>
-                            <li><i class="fas fa-check"></i> Community support</li>
-                        </ul>
-                    </div>
+        <form id="privateForm">
+          <div class="field">
+            <input type="text" name="name" placeholder="Your name" required>
+          </div>
 
-                    <!-- Pro Plan (Featured) -->
-                    <div class="pricing-card featured glass fade-in">
-                        <div class="popular-badge">Most Popular</div>
-                        <h3 class="plan-name">Pro</h3>
-                        <p class="plan-desc">For growing teams that need advanced automation.</p>
-                        <div class="plan-price">
-                            <span class="currency">$</span>
-                            <span class="price-amount" data-monthly="29" data-yearly="23">29</span>
-                            <span class="period">/ month</span>
-                        </div>
-                        <a href="#" class="btn btn-primary btn-block">Start 14-Day Trial</a>
-                        <ul class="plan-features">
-                            <li><i class="fas fa-check"></i> Unlimited projects</li>
-                            <li><i class="fas fa-check"></i> Advanced AI Copilot (Unlimited)</li>
-                            <li><i class="fas fa-check"></i> 100GB storage</li>
-                            <li><i class="fas fa-check"></i> Custom smart workflows</li>
-                            <li><i class="fas fa-check"></i> Priority email support</li>
-                        </ul>
-                    </div>
+          <div class="field">
+            <input type="text" name="instagram" placeholder="Instagram username" required>
+          </div>
 
-                    <!-- Enterprise Plan -->
-                    <div class="pricing-card glass fade-in">
-                        <h3 class="plan-name">Enterprise</h3>
-                        <p class="plan-desc">For large organizations with custom security needs.</p>
-                        <div class="plan-price">
-                            <span class="price-amount custom-text">Custom</span>
-                        </div>
-                        <a href="#" class="btn btn-secondary btn-block">Contact Sales</a>
-                        <ul class="plan-features">
-                            <li><i class="fas fa-check"></i> Everything in Pro</li>
-                            <li><i class="fas fa-check"></i> SSO & SAML authentication</li>
-                            <li><i class="fas fa-check"></i> Unlimited storage</li>
-                            <li><i class="fas fa-check"></i> Dedicated account manager</li>
-                            <li><i class="fas fa-check"></i> Custom SLA & 24/7 support</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
+          <div class="field">
+            <input type="email" name="email" placeholder="Email address" required>
+          </div>
+
+          <button type="submit">REQUEST ACCESS ↗</button>
+        </form>
+
+        <div class="success" id="successMessage">
+          THE PRIVATE LIST WILL OPEN SOON.
+        </div>
+
+        <p class="form-note">
+          Access is limited. Not everyone gets an invitation.
+        </p>
+      </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 FlowState Inc. All rights reserved. Built with <i class="fas fa-heart" style="color: #EC4899;"></i> by <a href="https://github.com/AmiARMiess" target="_blank">DragonARMY</a></p>
-        </div>
+    <footer>
+      <span>HUSH® · 2026</span>
+      <span>KEEP IT QUIET.</span>
     </footer>
 
-    <script src="script.js"></script>
+  </div>
+
+  <script>
+    document.getElementById('privateForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.getElementById('successMessage').style.display = 'block';
+    });
+  </script>
 </body>
 </html>
