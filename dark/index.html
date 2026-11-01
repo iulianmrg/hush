@@ -241,6 +241,63 @@
         font-size: 8px;
       }
     }
+    /* HUSH – FLOATING PARTICLES */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.35;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, white 99%, transparent),
+    radial-gradient(1px 1px at 30% 70%, white 99%, transparent),
+    radial-gradient(2px 2px at 75% 35%, white 99%, transparent),
+    radial-gradient(1px 1px at 90% 80%, white 99%, transparent),
+    radial-gradient(1px 1px at 55% 15%, white 99%, transparent),
+    radial-gradient(2px 2px at 20% 90%, white 99%, transparent);
+  background-size: 350px 350px;
+  animation: particlesFloat 35s linear infinite;
+}
+
+@keyframes particlesFloat {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-350px);
+  }
+}
+
+/* KEEP CONTENT ABOVE PARTICLES */
+.page {
+  position: relative;
+  z-index: 1;
+}
+
+/* HUSH – INPUT SHINE */
+input:focus {
+  outline: none;
+  border-color: rgba(255,255,255,0.65);
+  box-shadow: 0 0 18px rgba(255,255,255,0.08);
+  background-image: linear-gradient(
+    110deg,
+    transparent 35%,
+    rgba(255,255,255,0.09) 50%,
+    transparent 65%
+  );
+  background-size: 250% 100%;
+  animation: inputShine 1.2s ease;
+}
+
+@keyframes inputShine {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}
   </style>
 
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
