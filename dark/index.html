@@ -242,6 +242,8 @@
       }
     }
   </style>
+
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 
 <body>
@@ -315,14 +317,29 @@
     const instagram = form.querySelector('[name="instagram"]').value.trim();
     const email = form.querySelector('[name="email"]').value.trim();
 
+    const turnstileToken = form.querySelector('[name="cf-turnstile-response"]')?.value;
+
+    if (!turnstileToken) {
+      successMessage.textContent = 'PLEASE COMPLETE THE SECURITY CHECK.';
+      successMessage.style.display = 'block';
+      return;
+    }
+
     button.disabled = true;
     button.textContent = 'SENDING...';
 
     try {
       const response = await fetch('/api/private-list', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, instagram, email })
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name,
+          instagram,
+          email,
+          turnstileToken
+        })
       });
 
       const result = await response.json();
